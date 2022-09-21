@@ -1,9 +1,9 @@
-.app {
+.App {
   text-align: center;
 }
 
 
-.app__header {
+.App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -11,5 +11,5 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
 }
