@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 
 function Post({ post }) {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 500 }}>
       <CardActionArea>
         <CardMedia
           component="img"
