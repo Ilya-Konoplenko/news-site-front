@@ -3,6 +3,6 @@ import newsReducer from './newsReducer';
 
 export default function rootReducer() {
   combineReducers({
-    app: newsReducer,
+    news: newsReducer,
   });
 }
