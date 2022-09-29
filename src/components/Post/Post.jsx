@@ -1,10 +1,11 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
+
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
-import PropTypes from 'prop-types';
 
 function Post({ post }) {
   return (
@@ -21,7 +22,7 @@ function Post({ post }) {
             {post.title}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {post.body}
+            {post.description}
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -33,7 +34,8 @@ Post.propTypes = {
   post: PropTypes.shape({
     id: PropTypes.number,
     title: PropTypes.string,
-    body: PropTypes.string,
+    description: PropTypes.string,
+    imgae: PropTypes.string,
   }).isRequired,
 };
 export default Post;

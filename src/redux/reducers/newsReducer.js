@@ -1,25 +1,32 @@
-import * as actionTypes from '../constants';
+import { NEWS_REQUESTED, NEWS_RECEIVED, NEWS_FAILED } from '../constants';
 
 const initialState = {
-  items: [],
-  fetching: false,
+  news: [],
+  isLoading: false,
   error: null,
 };
 
 export default function newsReducer(state = initialState, action = {}) {
-  console.log(action.payload);
-  switch (action) {
-    case actionTypes.NEWS_REQUESTED:
+  switch (action.type) {
+    case NEWS_REQUESTED:
       return {
-        ...state, fetching: true, items: [], error: null,
+        ...state,
+        isLoading: true,
+        error: null,
       };
-    case actionTypes.NEWS_RECEIVED:
+    case NEWS_RECEIVED:
       return {
-        ...state, fetching: false, items: action.payload, error: null,
+        ...state,
+        isLoading: false,
+        news: action.payload,
+        error: null,
       };
-    case actionTypes.NEWS_ERROR:
+    case NEWS_FAILED:
       return {
-        ...state, fetching: false, items: [], error: action.error,
+        ...state,
+        isLoading: false,
+        news: [],
+        error: action.payload,
       };
     default: return state;
   }

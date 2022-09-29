@@ -4,4 +4,4 @@ import * as actionTypes from '../constants';
 
 export const getNewsRequest = createAction(actionTypes.NEWS_REQUESTED);
 export const newsReceived = createAction(actionTypes.NEWS_RECEIVED);
-export const getNewsError = createAction(actionTypes.NEWS_ERROR);
+export const getNewsError = createAction(actionTypes.NEWS_FAILED);
