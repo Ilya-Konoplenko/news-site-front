@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { memo } from 'react';
 import PropTypes from 'prop-types';
 
 import Card from '@mui/material/Card';
@@ -38,4 +39,4 @@ Post.propTypes = {
     imgae: PropTypes.string,
   }).isRequired,
 };
-export default Post;
+export default memo(Post);

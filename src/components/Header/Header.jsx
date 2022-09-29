@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { memo } from 'react';
 
-import './Header.css';
+import './header.css';
 
 function Header() {
   return (
     <header className="header">
-      <div className="other-info">
-        <span className="news-title">ILYA JR. NEWS</span>
+      <div className="header__info">
+        <span className="header__news-title">ILYA JR. NEWS</span>
       </div>
       <div className="header__button-section">
         <button type="button" className="header__button header__button--signup">SIGN UP</button>
@@ -16,4 +16,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default memo(Header);

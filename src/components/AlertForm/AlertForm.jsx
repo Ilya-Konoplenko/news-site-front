@@ -1,14 +1,22 @@
 import * as React from 'react';
+import { memo } from 'react';
 import PropTypes from 'prop-types';
 
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 
-function AlertForm({ alert }) {
+function AlertForm({ alert, option }) {
   return (
-    <Stack sx={{ width: '100%' }} spacing={2}>
+    <Stack
+      sx={{
+        marginTop: '20%',
+        width: '100%',
+        alignItems: 'center',
+      }}
+      spacing={2}
+    >
 
-      <Alert variant="filled" severity="error">
+      <Alert variant="filled" severity={option}>
         { alert }
       </Alert>
     </Stack>
@@ -17,6 +25,7 @@ function AlertForm({ alert }) {
 
 AlertForm.propTypes = {
   alert: PropTypes.string.isRequired,
+  option: PropTypes.string.isRequired,
 };
 
-export default AlertForm;
+export default memo(AlertForm);

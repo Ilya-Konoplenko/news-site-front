@@ -6,30 +6,30 @@ import Post from '../../components/Post/Post';
 import Spinner from '../../components/Spinner/Spinner';
 import AlertForm from '../../components/AlertForm/AlertForm';
 
-import './MainPage.css';
+import './mainpage.css';
 
 function MainPage() {
   const dispatch = useDispatch();
+
+  const postsItems = useSelector((state) => state.news.news);
+  const isLoading = useSelector((state) => state.news.isLoading);
+  const error = useSelector((state) => state.news.error);
+
   useEffect(() => {
     dispatch(getNewsRequest());
   }, [dispatch]);
-  const {
-    news: newsItems,
-    isLoading,
-    error: errorMessage,
-  } = useSelector((state) => state.news);
-
-  if (errorMessage) {
-    return <AlertForm alert={errorMessage} />;
-  }
 
   if (isLoading) {
     return <Spinner />;
   }
 
-  if (newsItems.length === 0) { return <div>Нет новостей ,сорян</div>; }
+  if (error) {
+    return <AlertForm alert={error} option="error" />;
+  }
 
-  const newsArray = newsItems.map((post) => (
+  if (postsItems.length === 0) { return <AlertForm alert="Кажется здесь пусто" option="info" />; }
+
+  const newsArray = postsItems.map((post) => (
     <Post key={post.id} post={post} />));
 
   return (

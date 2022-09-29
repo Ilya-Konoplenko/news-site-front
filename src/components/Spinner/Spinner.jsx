@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 
-import './Spinner.css';
+import './spinner.css';
 
-export default function Spinner() {
+function Spinner() {
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box>
       <CircularProgress sx={{
         width: '100px',
         height: '100px',
@@ -16,3 +16,5 @@ export default function Spinner() {
     </Box>
   );
 }
+
+export default memo(Spinner);
