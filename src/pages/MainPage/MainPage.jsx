@@ -29,9 +29,14 @@ function MainPage() {
 
   if (newsItems.length === 0) { return <div>Нет новостей ,сорян</div>; }
 
-  return newsItems.map((post) => (
-    <Post key={post.id} post={post} />
-  ));
+  const newsArray = newsItems.map((post) => (
+    <Post key={post.id} post={post} />));
+
+  return (
+    <div className="main-section">
+      {newsArray}
+    </div>
+  );
 }
 
 export default memo(MainPage);
