@@ -9,8 +9,8 @@ import AlertForm from '../../components/AlertForm/AlertForm';
 import './mainpage.css';
 
 function MainPage() {
+  const TEXT_INFO = 'Кажется здесь пусто';
   const dispatch = useDispatch();
-
   const postsItems = useSelector((state) => state.news.news);
   const isLoading = useSelector((state) => state.news.isLoading);
   const error = useSelector((state) => state.news.error);
@@ -27,7 +27,9 @@ function MainPage() {
     return <AlertForm alert={error} option="error" />;
   }
 
-  if (postsItems.length === 0) { return <AlertForm alert="Кажется здесь пусто" option="info" />; }
+  if (postsItems.length === 0) {
+    return <AlertForm alert={TEXT_INFO} option="info" />;
+  }
 
   const newsArray = postsItems.map((post) => (
     <Post key={post.id} post={post} />));
