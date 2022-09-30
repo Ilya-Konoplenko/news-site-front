@@ -29,6 +29,7 @@
   background: #FFFFFF;
   border: 2px solid #E4E6F1;
   border-radius: 48px;
+  cursor: pointer;
 }
 
 .header__news-title { 

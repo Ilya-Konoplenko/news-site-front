@@ -8,8 +8,9 @@ import AlertForm from '../../components/AlertForm/AlertForm';
 
 import './mainpage.css';
 
+const TEXT_INFO = 'Кажется здесь пусто';
+
 function MainPage() {
-  const TEXT_INFO = 'Кажется здесь пусто';
   const dispatch = useDispatch();
   const postsItems = useSelector((state) => state.news.news);
   const isLoading = useSelector((state) => state.news.isLoading);
