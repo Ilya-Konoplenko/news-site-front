@@ -1,14 +1,15 @@
 import React, { useEffect, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getNewsRequest } from '../../redux/actions/news';
 import Post from '../../components/Post/Post';
 import Spinner from '../../components/Spinner/Spinner';
 import AlertForm from '../../components/AlertForm/AlertForm';
 
+import { getNewsRequest } from '../../redux/actions/news';
+
 import './mainpage.css';
 
-const TEXT_INFO = 'Кажется здесь пусто';
+const TEXT_INFO = 'I think there is not news yet';
 
 function MainPage() {
   const dispatch = useDispatch();
@@ -32,12 +33,10 @@ function MainPage() {
     return <AlertForm alert={TEXT_INFO} option="info" />;
   }
 
-  const newsArray = postsItems.map((post) => (
-    <Post key={post.id} post={post} />));
-
   return (
     <div className="main-section">
-      {newsArray}
+      {postsItems.map((post) => (
+        <Post key={post.id} post={post} />))}
     </div>
   );
 }

@@ -1,4 +1,8 @@
 import React, { memo } from 'react';
+import {
+  ButtonGroup,
+  Button,
+} from '@mui/material';
 
 import './header.css';
 
@@ -8,10 +12,10 @@ function Header() {
       <div className="header__info">
         <span className="header__news-title">ILYA JR. NEWS</span>
       </div>
-      <div className="header__button-section">
-        <button type="button" className="header__button header__button--signup">SIGN UP</button>
-        <button type="button" className="header__button header__button--login">LOGIN</button>
-      </div>
+      <ButtonGroup variant="contained" aria-label="outlined button group">
+        <Button>Login</Button>
+        <Button>SignUp</Button>
+      </ButtonGroup>
     </header>
   );
 }

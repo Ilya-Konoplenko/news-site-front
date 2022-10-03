@@ -1,8 +1,10 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 
-import Alert from '@mui/material/Alert';
-import Stack from '@mui/material/Stack';
+import {
+  Alert,
+  Stack,
+} from '@mui/material/';
 
 function AlertForm({ alert, option }) {
   return (
