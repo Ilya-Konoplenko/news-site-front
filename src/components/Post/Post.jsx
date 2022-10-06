@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 import {
   CardActionArea,
   Typography,
-  CardMedia, CardContent, Card,
+  CardMedia,
+  CardContent,
+  Card,
 } from '@mui/material';
 
 function Post({ post }) {

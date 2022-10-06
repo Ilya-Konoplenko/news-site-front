@@ -1,7 +1,10 @@
 import React, { memo } from 'react';
 
-import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
+import {
+  Box,
+  CircularProgress,
+} from '@mui/material';
+
 
 import './spinner.css';
 

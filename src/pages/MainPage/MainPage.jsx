@@ -36,7 +36,8 @@ function MainPage() {
   return (
     <div className="main-section">
       {postsItems.map((post) => (
-        <Post key={post.id} post={post} />))}
+        <Post key={post.id} post={post} />
+      ))}
     </div>
   );
 }

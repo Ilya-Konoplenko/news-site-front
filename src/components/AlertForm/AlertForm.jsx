@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {
   Alert,
   Stack,
-} from '@mui/material/';
+} from '@mui/material';
 
 function AlertForm({ alert, option }) {
   return (
@@ -16,7 +16,6 @@ function AlertForm({ alert, option }) {
       }}
       spacing={2}
     >
-
       <Alert variant="filled" severity={option}>
         { alert }
       </Alert>
