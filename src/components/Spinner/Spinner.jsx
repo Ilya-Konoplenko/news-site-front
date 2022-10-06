@@ -5,7 +5,6 @@ import {
   CircularProgress,
 } from '@mui/material';
 
-
 import './spinner.css';
 
 function Spinner() {
