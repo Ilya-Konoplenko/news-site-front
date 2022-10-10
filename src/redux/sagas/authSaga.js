@@ -2,42 +2,43 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 
 import {
   signupReceived,
-  getSignupError,
+  getRequestError,
   loginReceived,
-  getLoginError,
 } from '../actions/auth';
 import { loginRequest, signupRequest } from '../../api/authApi';
 import * as actionTypes from '../constants';
 
-function* authWorker({ type, payload }) {
-  if (type === actionTypes.SIGNUP_REQUESTED) {
-    try {
-      const data = yield call(signupRequest, payload);
-      localStorage.setItem('token', data.token);
-      yield put(signupReceived(data.user));
-    } catch (error) {
-      yield put(getSignupError(error.response.data));
-    }
-  } else if (type === actionTypes.LOGIN_REQUESTED) {
-    try {
-      const data = yield call(loginRequest, payload);
-      localStorage.setItem('token', data.token);
-      yield put(loginReceived(data.user));
-    } catch (error) {
-      yield put(getLoginError(error.response.data));
-    }
-  } else if (type === actionTypes.LOGOUT__REQUESTED) {
-    try {
-      localStorage.clear('token');
-    } catch (error) {
-      yield put(getLoginError(error.response.data));
-    }
+function* signupWorker({ payload }) {
+  try {
+    const data = yield call(signupRequest, payload);
+    localStorage.setItem('token', data.token);
+    yield put(signupReceived(data.user));
+  } catch (error) {
+    yield put(getRequestError(error.response.data));
+  }
+}
+
+function* loginWorker({ payload }) {
+  try {
+    const data = yield call(loginRequest, payload);
+    localStorage.setItem('token', data.token);
+    yield put(loginReceived(data.user));
+  } catch (error) {
+    yield put(getRequestError(error.response.data));
+  }
+}
+
+function* logoutWorker() {
+  try {
+    localStorage.clear('token');
+  } catch (error) {
+    yield put(getRequestError(error.response.data));
   }
 }
 
 function* authWatcher() {
-  yield takeLatest(actionTypes.SIGNUP_REQUESTED, authWorker);
-  yield takeLatest(actionTypes.LOGIN_REQUESTED, authWorker);
-  yield takeLatest(actionTypes.LOGOUT__REQUESTED, authWorker);
+  yield takeLatest(actionTypes.SIGNUP_REQUESTED, signupWorker);
+  yield takeLatest(actionTypes.LOGIN_REQUESTED, loginWorker);
+  yield takeLatest(actionTypes.LOGOUT_REQUESTED, logoutWorker);
 }
 export default authWatcher;

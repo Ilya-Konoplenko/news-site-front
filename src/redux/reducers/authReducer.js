@@ -1,11 +1,10 @@
 import {
   SIGNUP_REQUESTED,
   SIGNUP_RECEIVED,
-  SIGNUP_FAILED,
+  REQUEST_FAILED,
   LOGIN_REQUESTED,
   LOGIN_RECEIVED,
-  LOGIN_FAILED,
-  LOGOUT__REQUESTED,
+  LOGOUT_REQUESTED,
 } from '../constants';
 
 const initialState = {
@@ -26,18 +25,11 @@ export default function authReducer(state = initialState, action = {}) {
         ...state,
         isLoggedIn: true,
       };
-    case SIGNUP_FAILED:
-      return {
-        ...state,
-        isLoggedIn: false,
-        user: [],
-        error: action.payload,
-      };
     case LOGIN_REQUESTED:
       return {
         ...state,
         isLoggedIn: false,
-        user: [],
+        user: {},
       };
     case LOGIN_RECEIVED:
       return {
@@ -46,19 +38,19 @@ export default function authReducer(state = initialState, action = {}) {
         user: action.payload,
         error: null,
       };
-    case LOGIN_FAILED:
+    case LOGOUT_REQUESTED:
       return {
         ...state,
         isLoggedIn: false,
-        user: [],
-        error: action.payload,
-      };
-    case LOGOUT__REQUESTED:
-      return {
-        ...state,
-        isLoggedIn: false,
-        user: [],
+        user: {},
         error: null,
+      };
+    case REQUEST_FAILED:
+      return {
+        ...state,
+        isLoggedIn: false,
+        user: {},
+        error: action.payload,
       };
     default: return state;
   }

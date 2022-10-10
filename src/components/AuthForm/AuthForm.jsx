@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import * as Yup from 'yup';
-import {
-  useFormik,
-} from 'formik';
+import { useFormik } from 'formik';
+
 import {
   FormControl,
   InputLabel,
@@ -14,53 +12,39 @@ import {
 
 import { getLoginRequest, getSignupRequest } from '../../redux/actions/auth';
 
-import './authform.css';
+import * as Message from './constants';
+import { loginValidationSchema, signUpValidationSchema } from './validationSchemas';
 
-const signUpValidationSchema = Yup.object().shape({
-  username: Yup.string()
-    .min(2, 'Too Short!')
-    .max(50, 'Too Long!')
-    .required('Required'),
-  password: Yup.string().required('Password is required'),
-  email: Yup.string().email('Invalid email').required('Required'),
-});
+import './authForm.css';
 
-const loginValidationSchema = Yup.object().shape({
-  username: Yup.string()
-    .min(2, 'Too Short!')
-    .max(50, 'Too Long!')
-    .required('Required'),
-  password: Yup.string().required('Password is required'),
-});
-
-export default function AuthForm(active) {
-  console.log(active);
+export default function AuthForm({ activeModalType }) {
   const dispatch = useDispatch();
-  const { status } = active;
-  const fields = ['username', 'password'];
-  const isLogin = status === 'Login' ? 'Login' : '';
-
-  const error = useSelector((state) => console.log(state));
+  const fields = [Message.TEXT_USERNAME, Message.TEXT_PASSWORD, Message.TEXT_EMAIL];
+  const isLogin = activeModalType === Message.TEXT_LOGIN;
+  const filteredFields = isLogin ? fields.slice(0, 2) : fields;
+  const error = useSelector((state) => state.auth.error);
+  console.log({ error });
   const formik = useFormik({
     initialValues: {
       username: '',
       password: '',
       email: '',
     },
-    validationSchema: (isLogin === 'Login' ? loginValidationSchema : signUpValidationSchema),
+    validationSchema: (
+      isLogin ? loginValidationSchema : signUpValidationSchema
+    ),
     onSubmit: (payload) => {
-      if (status === 'Login') {
-        dispatch(getLoginRequest(payload));
-      } else {
-        dispatch(getSignupRequest(payload));
-      }
+      const currentRequest = isLogin
+        ? getLoginRequest
+        : getSignupRequest;
+      dispatch(currentRequest(payload));
     },
   });
 
   return (
     <form onSubmit={formik.handleSubmit}>
-      <h2>{isLogin ? 'Login' : 'SignUp'}</h2>
-      {fields.map((field) => (
+      <h2>{isLogin ? Message.TEXT_LOGIN : Message.TEXT_SIGNUP}</h2>
+      {filteredFields.map((field) => (
         <FormControl key={field}>
           <InputLabel htmlFor="my-input">{field}</InputLabel>
           <Input
@@ -70,6 +54,7 @@ export default function AuthForm(active) {
             label={field}
             value={formik.values[field]}
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             aria-describedby="my-helper-text"
             error={formik.touched[field] && Boolean(formik.errors[field])}
           />
@@ -78,23 +63,6 @@ export default function AuthForm(active) {
           )}
         </FormControl>
       ))}
-      {!isLogin && (
-      <FormControl key="email">
-        <InputLabel htmlFor="my-input">Email</InputLabel>
-        <Input
-          id="email"
-          email="email"
-          type="text"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.email}
-          aria-describedby="my-helper-text"
-        />
-        {formik.touched.email && Boolean(formik.errors.email) && (
-          <div className="error">{formik.errors.email}</div>
-        )}
-      </FormControl>
-      )}
       {error && <div className="error">{error}</div>}
       <Button id="submit-button" variant="outlined" sx={{ mb: 10 }} type="submit">Сonfirm</Button>
     </form>
@@ -102,7 +70,5 @@ export default function AuthForm(active) {
 }
 
 AuthForm.propTypes = {
-  active: PropTypes.shape({
-    status: PropTypes.string,
-  }).isRequired,
+  activeModalType: PropTypes.string.isRequired,
 };

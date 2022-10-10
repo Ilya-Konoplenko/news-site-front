@@ -1,17 +1,22 @@
-/* eslint-disable react/prop-types */
-import { Card } from '@mui/material';
-import { Container } from '@mui/system';
 import React from 'react';
+import { Card, Container } from '@mui/material';
+import PropTypes from 'prop-types';
 
 import AuthForm from '../AuthForm/AuthForm';
-import './auth.css';
 
-export default function Modal({ active, setActive }) {
+import './modal.css';
+
+export default function Modal({ activeModalType, setActiveModalType }) {
   return (
-    <Container onClick={() => setActive('')} className="auth-form">
+    <Container onClick={() => setActiveModalType('')} className="auth-form">
       <Card onClick={(e) => e.stopPropagation()} className="auth-form-content">
-        <AuthForm status={active} setActive={setActive} />
+        <AuthForm activeModalType={activeModalType} />
       </Card>
     </Container>
   );
 }
+
+Modal.propTypes = {
+  activeModalType: PropTypes.string.isRequired,
+  setActiveModalType: PropTypes.string.isRequired,
+};

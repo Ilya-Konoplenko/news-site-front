@@ -1,24 +1,24 @@
 import React, { useEffect, memo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
 import {
   ButtonGroup,
   Button,
 } from '@mui/material';
-
-import './header.css';
 import Modal from '../Modal/Modal';
 import { getLogoutRequested } from '../../redux/actions/auth';
 
+import './header.css';
+
 function Header() {
   const dispatch = useDispatch();
-
+  const displayLogout = () => dispatch(getLogoutRequested());
   const [modalType, setModalType] = useState('');
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-  const username = useSelector((state) => state.auth.user.username);
+
   useEffect(() => {
-    if (isLoggedIn) { setModalType(false); }
+    if (isLoggedIn) { setModalType(''); }
   }, [isLoggedIn]);
+
   return (
     <header className="header">
       <div className="header__info">
@@ -33,13 +33,10 @@ function Header() {
             </>
           )
           : (
-            <>
-              <div className="header__news-title">{username}</div>
-              <Button onClick={() => dispatch(getLogoutRequested())}>Logout</Button>
-            </>
+            <Button onClick={displayLogout}>Logout</Button>
           )}
       </ButtonGroup>
-      {modalType && <Modal active={modalType} setActive={setModalType} />}
+      {modalType && <Modal activeModalType={modalType} setActiveModalType={setModalType} />}
     </header>
   );
 }
