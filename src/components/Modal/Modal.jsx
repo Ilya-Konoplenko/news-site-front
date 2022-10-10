@@ -10,7 +10,7 @@ export default function Modal({ active, setActive }) {
   return (
     <Container onClick={() => setActive('')} className="auth-form">
       <Card onClick={(e) => e.stopPropagation()} className="auth-form-content">
-        <AuthForm status={active} />
+        <AuthForm status={active} setActive={setActive} />
       </Card>
     </Container>
   );

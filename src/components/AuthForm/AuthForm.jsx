@@ -1,16 +1,18 @@
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+import * as Yup from 'yup';
 import {
   useFormik,
 } from 'formik';
-import * as Yup from 'yup';
 import {
   FormControl,
   InputLabel,
   Input,
   Button,
 } from '@mui/material';
+
+import { getLoginRequest, getSignupRequest } from '../../redux/actions/auth';
 
 import './authform.css';
 
@@ -32,8 +34,13 @@ const loginValidationSchema = Yup.object().shape({
 });
 
 export default function AuthForm(active) {
+  console.log(active);
+  const dispatch = useDispatch();
+  const { status } = active;
   const fields = ['username', 'password'];
-  const isLogin = active.status === 'Login' ? 'Login' : '';
+  const isLogin = status === 'Login' ? 'Login' : '';
+
+  const error = useSelector((state) => console.log(state));
   const formik = useFormik({
     initialValues: {
       username: '',
@@ -41,8 +48,12 @@ export default function AuthForm(active) {
       email: '',
     },
     validationSchema: (isLogin === 'Login' ? loginValidationSchema : signUpValidationSchema),
-    onSubmit: () => {
-      console.log('Req');
+    onSubmit: (payload) => {
+      if (status === 'Login') {
+        dispatch(getLoginRequest(payload));
+      } else {
+        dispatch(getSignupRequest(payload));
+      }
     },
   });
 
@@ -84,7 +95,14 @@ export default function AuthForm(active) {
         )}
       </FormControl>
       )}
-      <Button variant="outlined" sx={{ mb: 10 }} type="submit">Сonfirm</Button>
+      {error && <div className="error">{error}</div>}
+      <Button id="submit-button" variant="outlined" sx={{ mb: 10 }} type="submit">Сonfirm</Button>
     </form>
   );
 }
+
+AuthForm.propTypes = {
+  active: PropTypes.shape({
+    status: PropTypes.string,
+  }).isRequired,
+};
