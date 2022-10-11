@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@mui/material": "^5.10.6",
-    "@mui/system": "^5.10.8",
     "axios": "^0.27.2",
     "dotenv": "^16.0.2",
     "formik": "^2.2.9",
@@ -17,7 +16,6 @@
     "redux": "^4.2.0",
     "redux-actions": "^2.6.5",
     "redux-saga": "^1.2.1",
-    "web-vitals": "^2.1.4",
     "yup": "^0.32.11"
   },
   "scripts": {

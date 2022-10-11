@@ -29,11 +29,7 @@ function* loginWorker({ payload }) {
 }
 
 function* logoutWorker() {
-  try {
-    localStorage.clear('token');
-  } catch (error) {
-    yield put(getRequestError(error.response.data));
-  }
+  yield localStorage.removeItem('token');
 }
 
 function* authWatcher() {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
@@ -16,16 +16,16 @@ import { TEXT_LOGIN, TEXT_SIGNUP } from './messages';
 import {
   loginValidationSchema,
   signUpValidationSchema,
-  loginField,
-  signupFiled,
+  loginFields,
+  signupFileds,
 } from './constants';
 
 import './authForm.css';
 
-export default function AuthForm({ activeModalType }) {
+function AuthForm({ activeModalType }) {
   const dispatch = useDispatch();
   const isLogin = activeModalType === 'Login';
-  const currentField = isLogin ? loginField : signupFiled;
+  const currentFields = isLogin ? loginFields : signupFileds;
   const error = useSelector((state) => state.auth.error);
   const formik = useFormik({
     initialValues: {
@@ -46,8 +46,8 @@ export default function AuthForm({ activeModalType }) {
 
   return (
     <form onSubmit={formik.handleSubmit}>
-      <h2>{isLogin ? TEXT_LOGIN : TEXT_SIGNUP }</h2>
-      {currentField.map((field) => (
+      <h2>{isLogin ? TEXT_LOGIN : TEXT_SIGNUP}</h2>
+      {currentFields.map((field) => (
         <FormControl key={field}>
           <InputLabel htmlFor="my-input">{field}</InputLabel>
           <Input
@@ -75,3 +75,4 @@ export default function AuthForm({ activeModalType }) {
 AuthForm.propTypes = {
   activeModalType: PropTypes.string.isRequired,
 };
+export default memo(AuthForm);

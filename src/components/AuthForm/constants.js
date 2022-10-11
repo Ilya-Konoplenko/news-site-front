@@ -18,9 +18,9 @@ const loginValidationSchema = Yup.object().shape({
   password: Yup.string().required(Message.TEXT_PASSWORD_REQUIRED),
 });
 
-const signupFiled = ['username', 'password', 'email'];
-const loginField = ['username', 'password'];
+const signupFileds = ['username', 'password', 'email'];
+const loginFields = ['username', 'password'];
 
 export {
-  loginValidationSchema, signUpValidationSchema, loginField, signupFiled,
+  loginValidationSchema, signUpValidationSchema, loginFields, signupFileds,
 };
