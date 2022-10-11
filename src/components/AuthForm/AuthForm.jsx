@@ -12,18 +12,21 @@ import {
 
 import { getLoginRequest, getSignupRequest } from '../../redux/actions/auth';
 
-import * as Message from './constants';
-import { loginValidationSchema, signUpValidationSchema } from './validationSchemas';
+import { TEXT_LOGIN, TEXT_SIGNUP } from './messages';
+import {
+  loginValidationSchema,
+  signUpValidationSchema,
+  loginField,
+  signupFiled,
+} from './constants';
 
 import './authForm.css';
 
 export default function AuthForm({ activeModalType }) {
   const dispatch = useDispatch();
-  const fields = [Message.TEXT_USERNAME, Message.TEXT_PASSWORD, Message.TEXT_EMAIL];
-  const isLogin = activeModalType === Message.TEXT_LOGIN;
-  const filteredFields = isLogin ? fields.slice(0, 2) : fields;
+  const isLogin = activeModalType === 'Login';
+  const currentField = isLogin ? loginField : signupFiled;
   const error = useSelector((state) => state.auth.error);
-  console.log({ error });
   const formik = useFormik({
     initialValues: {
       username: '',
@@ -43,8 +46,8 @@ export default function AuthForm({ activeModalType }) {
 
   return (
     <form onSubmit={formik.handleSubmit}>
-      <h2>{isLogin ? Message.TEXT_LOGIN : Message.TEXT_SIGNUP}</h2>
-      {filteredFields.map((field) => (
+      <h2>{isLogin ? TEXT_LOGIN : TEXT_SIGNUP }</h2>
+      {currentField.map((field) => (
         <FormControl key={field}>
           <InputLabel htmlFor="my-input">{field}</InputLabel>
           <Input
@@ -59,7 +62,7 @@ export default function AuthForm({ activeModalType }) {
             error={formik.touched[field] && Boolean(formik.errors[field])}
           />
           {formik.touched[field] && formik.errors[field] && (
-          <div className="error">{formik.errors[field]}</div>
+            <div className="error">{formik.errors[field]}</div>
           )}
         </FormControl>
       ))}

@@ -1,6 +1,7 @@
 import React from 'react';
-import { Card, Container } from '@mui/material';
 import PropTypes from 'prop-types';
+
+import { Card, Container } from '@mui/material';
 
 import AuthForm from '../AuthForm/AuthForm';
 

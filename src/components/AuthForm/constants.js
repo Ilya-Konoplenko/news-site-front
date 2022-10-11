@@ -1,12 +1,26 @@
-module.exports = {
-  TEXT_TOO_SHORT: 'Too Short!',
-  TEXT_TOO_LONG: 'Too Long!',
-  TEXT_REQUIRED: 'Required',
-  TEXT_PASSWORD_REQUIRED: 'Password is required',
-  TEXT_INVALID_EMAIL: 'Invalid email',
-  TEXT_USERNAME: 'username',
-  TEXT_PASSWORD: 'password',
-  TEXT_EMAIL: 'email',
-  TEXT_LOGIN: 'Login',
-  TEXT_SIGNUP: 'SignUp',
+import * as Yup from 'yup';
+import * as Message from './messages';
+
+const signUpValidationSchema = Yup.object().shape({
+  username: Yup.string()
+    .min(2, Message.TEXT_TOO_SHORT)
+    .max(50, Message.TEXT_TOO_LONG)
+    .required(Message.TEXT_REQUIRED),
+  password: Yup.string().required(Message.TEXT_PASSWORD_REQUIRED),
+  email: Yup.string().email(Message.TEXT_INVALID_EMAIL).required(Message.TEXT_PASSWORD_REQUIRED),
+});
+
+const loginValidationSchema = Yup.object().shape({
+  username: Yup.string()
+    .min(2, Message.TEXT_TOO_SHORT)
+    .max(50, Message.TEXT_TOO_LONG)
+    .required(Message.TEXT_REQUIRED),
+  password: Yup.string().required(Message.TEXT_PASSWORD_REQUIRED),
+});
+
+const signupFiled = ['username', 'password', 'email'];
+const loginField = ['username', 'password'];
+
+export {
+  loginValidationSchema, signUpValidationSchema, loginField, signupFiled,
 };

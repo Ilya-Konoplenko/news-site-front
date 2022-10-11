@@ -1,19 +1,21 @@
 import React, { useEffect, memo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import {
   ButtonGroup,
   Button,
 } from '@mui/material';
 import Modal from '../Modal/Modal';
+
 import { getLogoutRequested } from '../../redux/actions/auth';
 
 import './header.css';
 
 function Header() {
   const dispatch = useDispatch();
-  const displayLogout = () => dispatch(getLogoutRequested());
   const [modalType, setModalType] = useState('');
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const displayLogout = () => dispatch(getLogoutRequested());
 
   useEffect(() => {
     if (isLoggedIn) { setModalType(''); }
