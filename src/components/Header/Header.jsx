@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   ButtonGroup,
   Button,
+  Avatar,
 } from '@mui/material';
 
 import Modal from '../Modal/Modal';
@@ -20,11 +21,16 @@ function Header() {
   useEffect(() => {
     if (isLoggedIn) { setModalType(''); }
   }, [isLoggedIn]);
+  const pathUser = `/user/${localStorage.getItem('userURL')}`;
 
   return (
     <header className="header">
       <div className="header__info">
-        <span className="header__news-title">ILYA JR. NEWS</span>
+        <a href="/">
+          <span className="header__news-title">
+            ILYA JR. NEWS
+          </span>
+        </a>
       </div>
       <ButtonGroup variant="contained" aria-label="outlined button group">
         {!isLoggedIn
@@ -35,7 +41,10 @@ function Header() {
             </>
           )
           : (
-            <Button onClick={displayLogout}>Logout</Button>
+            <>
+              <a href={pathUser}><Avatar id="user-info__avatar">H</Avatar></a>
+              <Button onClick={displayLogout}>Logout</Button>
+            </>
           )}
       </ButtonGroup>
       {modalType && <Modal activeModalType={modalType} setActiveModalType={setModalType} />}

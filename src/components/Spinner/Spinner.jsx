@@ -9,7 +9,7 @@ import './spinner.css';
 
 function Spinner() {
   return (
-    <Box>
+    <Box id="spinner-box">
       <CircularProgress sx={{
         width: '100px',
         height: '100px',

@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import {
@@ -10,6 +11,8 @@ import {
 } from '@mui/material';
 
 function Post({ post }) {
+  const path = `/user/${post.userId}`;
+  const userData = useSelector((state) => state.user.user);
   return (
     <Card sx={{ maxWidth: 500 }}>
       <CardActionArea>
@@ -26,6 +29,7 @@ function Post({ post }) {
           <Typography variant="body2" color="text.secondary">
             {post.description}
           </Typography>
+          <a href={path}>{post.user?.username || userData.username}</a>
         </CardContent>
       </CardActionArea>
     </Card>
@@ -38,6 +42,10 @@ Post.propTypes = {
     title: PropTypes.string,
     description: PropTypes.string,
     imgae: PropTypes.string,
+    userId: PropTypes.number,
+    user: PropTypes.shape({
+      username: PropTypes.string,
+    }),
   }).isRequired,
 };
 export default memo(Post);

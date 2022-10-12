@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
+// import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 
 import {
@@ -23,9 +24,12 @@ import {
 import './authForm.css';
 
 function AuthForm({ activeModalType }) {
+  // const navigate = useNavigate();
   const dispatch = useDispatch();
   const isLogin = activeModalType === 'Login';
   const currentFields = isLogin ? loginFields : signupFileds;
+  const logginedUserId = useSelector((state) => state.auth.user.id);
+  localStorage.setItem('userURL', logginedUserId);
   const error = useSelector((state) => state.auth.error);
   const formik = useFormik({
     initialValues: {
