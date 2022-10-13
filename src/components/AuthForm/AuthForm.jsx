@@ -11,13 +11,12 @@ import {
 } from '@mui/material';
 
 import { getLoginRequest, getSignupRequest } from '../../redux/actions/auth';
-
 import { TEXT_LOGIN, TEXT_SIGNUP } from './messages';
 import {
   loginValidationSchema,
   signUpValidationSchema,
   loginFields,
-  signupFileds,
+  signupFields,
 } from './constants';
 
 import './authForm.css';
@@ -25,7 +24,7 @@ import './authForm.css';
 function AuthForm({ activeModalType }) {
   const dispatch = useDispatch();
   const isLogin = activeModalType === 'Login';
-  const currentFields = isLogin ? loginFields : signupFileds;
+  const currentFields = isLogin ? loginFields : signupFields;
   const error = useSelector((state) => state.auth.error);
   const formik = useFormik({
     initialValues: {

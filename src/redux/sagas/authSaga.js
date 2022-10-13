@@ -10,7 +10,7 @@ import * as actionTypes from '../constants';
 
 function* signupWorker({ payload }) {
   try {
-    const data = yield call(signupRequest, payload);
+    const { data } = yield call(signupRequest, payload);
     localStorage.setItem('token', data.token);
     yield put(signupReceived(data.user));
   } catch (error) {
@@ -20,7 +20,7 @@ function* signupWorker({ payload }) {
 
 function* loginWorker({ payload }) {
   try {
-    const data = yield call(loginRequest, payload);
+    const { data } = yield call(loginRequest, payload);
     localStorage.setItem('token', data.token);
     yield put(loginReceived(data.user));
   } catch (error) {

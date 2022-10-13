@@ -7,6 +7,7 @@ import {
 } from '@mui/material';
 
 import Modal from '../Modal/Modal';
+
 import { getLogoutRequested } from '../../redux/actions/auth';
 
 import './header.css';
