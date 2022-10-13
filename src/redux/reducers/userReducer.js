@@ -6,7 +6,6 @@ const initialState = {
 };
 
 export default function userReducer(state = initialState, action = {}) {
-  console.log(action.type);
   switch (action.type) {
     case USER_DATA_REQUESTED:
       return {

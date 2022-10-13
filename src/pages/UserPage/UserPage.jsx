@@ -21,7 +21,7 @@ function UserPage() {
 
   useEffect(() => {
     dispatch(getUserDataRequest(id));
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   if (error) {
     return <AlertForm alert={error} option="error" />;
