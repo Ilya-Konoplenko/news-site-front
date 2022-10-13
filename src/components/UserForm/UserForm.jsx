@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 
 import {
@@ -31,5 +31,4 @@ UserForm.propTypes = {
     email: PropTypes.string,
   }).isRequired,
 };
-
-export default React.memo(UserForm);
+export default memo(UserForm);

@@ -7,7 +7,7 @@ import AlertForm from '../../components/AlertForm/AlertForm';
 
 import { getNewsRequest } from '../../redux/actions/news';
 
-import './mainpage.css';
+import './mainPage.css';
 
 const TEXT_INFO = 'I think there is not news yet';
 

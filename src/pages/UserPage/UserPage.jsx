@@ -9,16 +9,15 @@ import Post from '../../components/Post/Post';
 import AlertForm from '../../components/AlertForm/AlertForm';
 import { getUserDataRequest } from '../../redux/actions/user';
 
-import './userpage.css';
+import './userPage.css';
 
 function UserPage() {
   const dispatch = useDispatch();
-  const logginedUserId = localStorage.getItem('userURL');
   const { id } = useParams();
-  const isLogginedUser = id === logginedUserId;
   const userData = useSelector((state) => state.user.user);
   const error = useSelector((state) => state.user.error);
-
+  const myUserPageId = useSelector((state) => state.auth.user.id);
+  const isLogginedUser = id === myUserPageId;
   useEffect(() => {
     dispatch(getUserDataRequest(id));
   }, [dispatch, id]);
