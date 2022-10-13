@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 
 import Modal from '../Modal/Modal';
-import { getLogoutRequested } from '../../redux/actions/auth';
+import { getLogoutRequested, verifyUserByToken } from '../../redux/actions/auth';
 
 import './header.css';
 
@@ -16,12 +16,16 @@ function Header() {
   const dispatch = useDispatch();
   const [modalType, setModalType] = useState('');
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const myPageId = useSelector((state) => state.auth.user.id);
+  const path = `/user/${myPageId}`;
   const displayLogout = () => dispatch(getLogoutRequested());
 
   useEffect(() => {
-    if (isLoggedIn) { setModalType(''); }
-  }, [isLoggedIn]);
-  const pathUser = `/user/${localStorage.getItem('userURL')}`;
+    if (isLoggedIn) {
+      setModalType('');
+      dispatch(verifyUserByToken());
+    }
+  }, [isLoggedIn, dispatch]);
 
   return (
     <header className="header">
@@ -41,10 +45,10 @@ function Header() {
             </>
           )
           : (
-            <>
-              <a href={pathUser}><Avatar id="user-info__avatar">H</Avatar></a>
+            <div className="header__logout">
+              <Avatar><a href={path}>U</a></Avatar>
               <Button onClick={displayLogout}>Logout</Button>
-            </>
+            </div>
           )}
       </ButtonGroup>
       {modalType && <Modal activeModalType={modalType} setActiveModalType={setModalType} />}

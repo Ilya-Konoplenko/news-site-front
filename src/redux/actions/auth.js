@@ -8,3 +8,4 @@ export const getSignupRequest = createAction(actionTypes.SIGNUP_REQUESTED);
 export const signupReceived = createAction(actionTypes.SIGNUP_RECEIVED);
 export const getLogoutRequested = createAction(actionTypes.LOGOUT_REQUESTED);
 export const getRequestError = createAction(actionTypes.REQUEST_FAILED);
+export const verifyUserByToken = createAction(actionTypes.REQUEST_VERIFY_USER);

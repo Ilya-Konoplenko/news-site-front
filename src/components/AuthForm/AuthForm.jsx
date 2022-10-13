@@ -28,8 +28,6 @@ function AuthForm({ activeModalType }) {
   const dispatch = useDispatch();
   const isLogin = activeModalType === 'Login';
   const currentFields = isLogin ? loginFields : signupFileds;
-  const logginedUserId = useSelector((state) => state.auth.user.id);
-  localStorage.setItem('userURL', logginedUserId);
   const error = useSelector((state) => state.auth.error);
   const formik = useFormik({
     initialValues: {
