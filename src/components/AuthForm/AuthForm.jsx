@@ -26,6 +26,7 @@ function AuthForm({ activeModalType }) {
   const isLogin = activeModalType === 'Login';
   const currentFields = isLogin ? loginFields : signupFields;
   const error = useSelector((state) => state.auth.error);
+
   const formik = useFormik({
     initialValues: {
       username: '',
@@ -52,7 +53,7 @@ function AuthForm({ activeModalType }) {
           <Input
             id={field}
             name={field}
-            type={field}
+            type="text"
             label={field}
             value={formik.values[field]}
             onChange={formik.handleChange}
@@ -66,7 +67,14 @@ function AuthForm({ activeModalType }) {
         </FormControl>
       ))}
       {error && <div className="error">{error}</div>}
-      <Button id="submit-button" variant="outlined" sx={{ mb: 10 }} type="submit">Сonfirm</Button>
+      <Button
+        id="submit-button"
+        variant="outlined"
+        sx={{ mb: 10 }}
+        type="submit"
+      >
+        Сonfirm
+      </Button>
     </form>
   );
 }

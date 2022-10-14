@@ -9,3 +9,8 @@ export const signupRequest = async (payload) => {
   const { data } = await api.post('auth/signup', payload);
   return data;
 };
+
+export const verifyUserToken = async () => {
+  const { data } = await api.get('/auth/whoami');
+  return data;
+};

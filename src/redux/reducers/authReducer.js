@@ -1,10 +1,12 @@
 import {
   SIGNUP_REQUESTED,
   SIGNUP_RECEIVED,
-  REQUEST_FAILED,
   LOGIN_REQUESTED,
   LOGIN_RECEIVED,
   LOGOUT_REQUESTED,
+  REQUEST_VERIFY_USER_FAILED,
+  REQUEST_LOGIN_FAILED,
+  REQUEST_SIGNUP_FAILED,
 } from '../constants';
 
 const initialState = {
@@ -45,7 +47,7 @@ export default function authReducer(state = initialState, action = {}) {
         user: {},
         error: null,
       };
-    case REQUEST_FAILED:
+    case REQUEST_VERIFY_USER_FAILED || REQUEST_LOGIN_FAILED || REQUEST_SIGNUP_FAILED:
       return {
         ...state,
         isLoggedIn: false,
