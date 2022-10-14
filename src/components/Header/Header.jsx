@@ -8,6 +8,7 @@ import {
 } from '@mui/material';
 
 import Modal from '../Modal/Modal';
+
 import { getLogoutRequested, verifyUserByToken } from '../../redux/actions/auth';
 
 import './header.css';
