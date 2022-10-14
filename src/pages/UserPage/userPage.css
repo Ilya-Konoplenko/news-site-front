@@ -44,3 +44,8 @@ body{
   gap: 2em;
   align-content: space-between;
 }
+
+.content__user-news--empty-page { 
+    justify-self: center;
+    align-self: center;
+}

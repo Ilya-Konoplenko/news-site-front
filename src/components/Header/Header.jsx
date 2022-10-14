@@ -16,6 +16,7 @@ function Header() {
   const dispatch = useDispatch();
   const [modalType, setModalType] = useState('');
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const username = useSelector((state) => state.auth.user.username);
   const myPageId = useSelector((state) => state.auth.user.id);
   const path = `/user/${myPageId}`;
   const displayLogout = () => dispatch(getLogoutRequested());
@@ -46,6 +47,9 @@ function Header() {
           )
           : (
             <div className="header__logout">
+              <span className="header__news-title">
+                {username}
+              </span>
               <Avatar><a href={path}>U</a></Avatar>
               <Button onClick={displayLogout}>Logout</Button>
             </div>

@@ -5,9 +5,9 @@ import {
   Box, Avatar, Button,
 } from '@mui/material';
 
-import './userform.css';
+import './userInfo.css';
 
-function UserForm({ userData, isLogginedUser }) {
+function UserInfo({ userData, isOwner }) {
   return (
     <Box className="box">
       <Avatar id="user-info__avatar">H</Avatar>
@@ -19,16 +19,16 @@ function UserForm({ userData, isLogginedUser }) {
         Email
         <p className="user-info__text">{userData.email}</p>
       </p>
-      {isLogginedUser && <Button id="user-info__create-post-bnt" variant="contained" size="large">CHANGE INFO</Button>}
+      {isOwner && <Button id="user-info__create-post-bnt" variant="contained" size="large">CHANGE INFO</Button>}
     </Box>
   );
 }
 
-UserForm.propTypes = {
-  isLogginedUser: PropTypes.bool.isRequired,
+UserInfo.propTypes = {
+  isOwner: PropTypes.bool.isRequired,
   userData: PropTypes.shape({
     username: PropTypes.string,
     email: PropTypes.string,
   }).isRequired,
 };
-export default memo(UserForm);
+export default memo(UserInfo);

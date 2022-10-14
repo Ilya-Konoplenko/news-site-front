@@ -36,3 +36,10 @@ a {
   line-height: 24px;
   color: #EAEAEA;
 }
+
+.header__logout { 
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
