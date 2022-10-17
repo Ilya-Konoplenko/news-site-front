@@ -1,0 +1,29 @@
+.auth-form { 
+  background-color: rgba(0, 0, 0, 0.4);
+  min-height: 100% ;
+  max-width: 100% !important;
+  position: absolute;
+}
+
+.auth-form-content {
+  z-index: 101;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  width: 600px;
+  padding: 5px;  
+  display: flex;
+  flex-direction: column; 
+  flex-wrap: wrap;
+  row-gap: 30px;
+}
+
+.error {
+  font-family: "Roboto","Helvetica","Arial", sans-serif;
+  color: brown;    
+}
+
+h2 { 
+  margin:auto;
+}
