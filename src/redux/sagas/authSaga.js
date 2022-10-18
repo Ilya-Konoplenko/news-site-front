@@ -34,7 +34,7 @@ function* logoutWorker() {
 
 function* verifyUser() {
   try {
-    const data = yield call(verifyUserToken);
+    const { data } = yield call(verifyUserToken);
     yield put(loginReceived(data));
   } catch (error) {
     yield put(getRequestError(error.response.data));

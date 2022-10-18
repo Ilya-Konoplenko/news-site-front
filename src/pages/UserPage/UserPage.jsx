@@ -43,7 +43,7 @@ function UserPage() {
       </div>
 
       <div className="content__user-news">
-        {userData.news.length ? (userData?.news?.map((post) => (
+        {userData.news?.length ? (userData?.news?.map((post) => (
           <Post key={post.id} post={post} />
         ))) : <span className="content__user-news--empty-page"> There is no news yet </span> }
       </div>

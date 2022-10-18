@@ -41,7 +41,7 @@ Post.propTypes = {
     id: PropTypes.number,
     title: PropTypes.string,
     description: PropTypes.string,
-    imgae: PropTypes.string,
+    image: PropTypes.string,
     userId: PropTypes.number,
     user: PropTypes.shape({
       username: PropTypes.string,

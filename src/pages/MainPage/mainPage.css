@@ -3,5 +3,5 @@
   margin: 2% auto;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-row-gap: 2em;
+  gap: 10px;
 }
