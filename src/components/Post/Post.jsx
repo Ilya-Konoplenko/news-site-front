@@ -10,23 +10,25 @@ import {
   Card,
 } from '@mui/material';
 
+import './post.css';
+
 function Post({ post }) {
   const path = `/user/${post.userId}`;
   const userData = useSelector((state) => state.user.user);
   return (
-    <Card sx={{ maxWidth: 500 }}>
+    <Card sx={{ maxWidth: 400, maxHeight: 400 }}>
       <CardActionArea>
         <CardMedia
           component="img"
           height="140"
-          image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+          image={`${process.env.REACT_APP_IMAGE_URL}/${post.image}`}
           alt="green iguana"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography className="card-text" gutterBottom variant="h5" component="div">
             {post.title}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography className="card-text" variant="body2" color="text.secondary">
             {post.description}
           </Typography>
           <a href={path}>{post.user?.username || userData.username}</a>
