@@ -1,11 +1,10 @@
 .image-section { 
-    text-align: center;
-    max-width: 200px;
-    overflow: hidden;
+  text-align: center;
+  max-width: 200px;
+  overflow: hidden;
 }
 
-.image-section img { 
- 
-    width: 100%;
-    object-fit: contain;
+.image-section img {  
+  width: 100%;
+  object-fit: contain;
 }

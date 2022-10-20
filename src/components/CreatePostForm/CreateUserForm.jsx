@@ -9,7 +9,6 @@ import {
 } from '@mui/material';
 
 import { getCreateNewsRequest } from '../../redux/actions/news';
-
 import newsFormValidationSchema from './constants';
 
 import './createUserForm.css';

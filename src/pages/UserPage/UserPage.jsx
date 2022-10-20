@@ -14,12 +14,13 @@ function UserPage() {
   const { id } = useParams();
   const userData = useSelector((state) => state.user.user);
   const error = useSelector((state) => state.user.error);
-  const post1 = useSelector((state) => state.post.post.post);
-  const authenthicatedUserId = useSelector((state) => state.auth.user.id);
-  const isOwner = Number(id) === authenthicatedUserId;
+  const newPost = useSelector((state) => state.post.post.post);
+  const authenticatedUserId = useSelector((state) => state.auth.user.id);
+  const isOwner = Number(id) === authenticatedUserId;
+
   useEffect(() => {
     dispatch(getUserDataRequest(id));
-  }, [dispatch, id, post1]);
+  }, [dispatch, id, newPost]);
 
   if (error) {
     return <AlertForm alert={error} option="error" />;
