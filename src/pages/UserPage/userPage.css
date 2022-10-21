@@ -4,7 +4,7 @@ body{
 .user__content{
     display: flex; 
     width: 100%;
-    height:90vh;
+    height:100%;
 }
 
 .content__user-info { 
@@ -38,14 +38,19 @@ body{
 }
 
 .content__user-news { 
-  padding: 5%;
+  padding: 2%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 2em;
-  align-content: space-between;
+  gap: 2%;
 }
 
+.content__user-news div { 
+    overflow: visible;
+}
 .content__user-news--empty-page { 
-    justify-self: center;
-    align-self: center;
+    position: absolute;
+    top: 50%;
+    left: 60%;
+    font-size: 30px;
+    
 }

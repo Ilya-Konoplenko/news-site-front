@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import Post from '../../components/Post/Post';
 import Spinner from '../../components/Spinner/Spinner';
 import AlertForm from '../../components/AlertForm/AlertForm';
-
 import { getNewsRequest } from '../../redux/actions/news';
 
 import './mainPage.css';

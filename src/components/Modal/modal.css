@@ -2,7 +2,16 @@
   background-color: rgba(0, 0, 0, 0.4);
   min-height: 100% ;
   max-width: 100% !important;
-  position: absolute;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  padding: auto;
+  height: 100vh;
+  max-width: none;
+  width: 100vw;
+  z-index: 2;
 }
 
 .auth-form-content {
@@ -10,7 +19,7 @@
   position: relative;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, 50%);
+  transform: translate(-50%, -50%);
   width: 600px;
   padding: 5px;  
   display: flex;
