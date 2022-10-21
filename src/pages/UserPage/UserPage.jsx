@@ -7,6 +7,8 @@ import Post from '../../components/Post/Post';
 import AlertForm from '../../components/AlertForm/AlertForm';
 import { getUserDataRequest } from '../../redux/actions/user';
 
+import { EMPTY_NEWS_ARRAY } from './constants';
+
 import './userPage.css';
 
 function UserPage() {
@@ -39,7 +41,11 @@ function UserPage() {
       <div className="content__user-news">
         {newsPosts?.length ? (newsPosts?.map((post) => (
           <Post key={post.id} post={post} />
-        ))) : <span className="content__user-news--empty-page"> There is no news yet... </span> }
+        ))) : (
+          <span className="content__user-news--empty-page">
+            { EMPTY_NEWS_ARRAY }
+          </span>
+        ) }
       </div>
     </section>
   );
