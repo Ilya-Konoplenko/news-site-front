@@ -9,14 +9,12 @@ import {
 } from '@mui/material';
 
 import { getCreateNewsRequest } from '../../redux/actions/news';
-import newsFormValidationSchema from './constants';
+import { newsFormValidationSchema, currentFields } from './constants';
 
 import './createUserForm.css';
 
 function CreateUserForm() {
-  const currentFields = ['title', 'description', 'tags'];
   const [selectedImage, setSelectedImage] = useState();
-
   const dispatch = useDispatch();
 
   const formik = useFormik({
@@ -25,11 +23,9 @@ function CreateUserForm() {
       description: '',
       tags: '',
     },
-    validationSchema: (
-      newsFormValidationSchema
-    ),
-    onSubmit: (output) => {
-      dispatch(getCreateNewsRequest({ output, selectedImage }));
+    validationSchema: newsFormValidationSchema,
+    onSubmit: (values) => {
+      dispatch(getCreateNewsRequest({ values, selectedImage }));
     },
   });
 
@@ -40,7 +36,7 @@ function CreateUserForm() {
   };
 
   const removeSelectedImage = () => {
-    setSelectedImage();
+    setSelectedImage(null);
   };
 
   return (
@@ -92,7 +88,7 @@ function CreateUserForm() {
         variant="outlined"
         sx={{ mb: 10 }}
       >
-        Сonfirm
+        POST
       </Button>
     </form>
   );

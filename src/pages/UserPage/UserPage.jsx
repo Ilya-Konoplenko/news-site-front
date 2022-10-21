@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -14,14 +14,18 @@ function UserPage() {
   const { id } = useParams();
   const userData = useSelector((state) => state.user.user);
   const error = useSelector((state) => state.user.error);
-  const newPost = useSelector((state) => state.post.post.post);
-  const authenticatedUserId = useSelector((state) => state.auth.user.id);
-  const isOwner = Number(id) === authenticatedUserId;
+  const authenthicatedUserId = useSelector((state) => state.auth.user.id);
+  const currentNews = useSelector((state) => state.post.post.post);
+  const isOwner = Number(id) === authenthicatedUserId;
+
+  const newsPosts = useMemo(
+    () => (currentNews ? [...userData.news, currentNews] : userData?.news),
+    [currentNews, userData],
+  );
 
   useEffect(() => {
     dispatch(getUserDataRequest(id));
-  }, [dispatch, id, newPost]);
-
+  }, [dispatch, id]);
   if (error) {
     return <AlertForm alert={error} option="error" />;
   }
@@ -33,7 +37,7 @@ function UserPage() {
       </div>
 
       <div className="content__user-news">
-        {userData.news?.length ? (userData?.news?.map((post) => (
+        {newsPosts?.length ? (newsPosts?.map((post) => (
           <Post key={post.id} post={post} />
         ))) : <span className="content__user-news--empty-page"> There is no news yet... </span> }
       </div>

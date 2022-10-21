@@ -1,41 +1,41 @@
 .box { 
-    background-color: #F5F5F5;
-    display: flex;
-    flex-direction: column;
-    row-gap: 5%;
-    align-items: center;
-    border-radius: 10px;
-    width: 70%;
-    height: auto;
-    padding: 5%;
+  background-color: #F5F5F5;
+  display: flex;
+  flex-direction: column;
+  row-gap: 5%;
+  align-items: center;
+  border-radius: 10px;
+  width: 70%;
+  height: auto;
+  padding: 5%;
 }
 
 p { 
-    margin-block-start: 0;
-    margin-block-end: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
 }
 
 #user-info__avatar {
-    width: 60px;
-    height: 60px;
+  width: 60px;
+  height: 60px;
 }
 
 #submit-button { 
-    width: 90%;
-    margin-bottom: 5px;
+  width: 90%;
+  margin-bottom: 5px;
 }
 
 .input {
-    width: 100%;
+  width: 100%;
 }
 
 .user-info__title{ 
-    margin-top: 5%;
-    font-family: Inter;
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 24px;
-    color: #0056ac;
+  margin-top: 5%;
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #0056ac;
 }
 
 .user-info__text { 

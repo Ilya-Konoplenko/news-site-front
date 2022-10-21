@@ -3,7 +3,7 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import {
   newsReceived,
   getNewsError,
-  CreateNewsResponse,
+  createNewsResponse,
   getCreateNewsError,
 } from '../actions/news';
 import { getAllNews, postNews } from '../../api/newsApi';
@@ -19,16 +19,16 @@ function* getNewsWorker() {
 }
 
 function* postNewsWorker({ payload }) {
-  const { output, selectedImage } = payload;
+  const { values, selectedImage } = payload;
   const form = new FormData();
   form.append('file', selectedImage);
-  const keys = Object.keys(output);
+  const keys = Object.keys(values);
   keys.forEach((key) => {
-    form.append(key, output[key]);
+    form.append(key, values[key]);
   });
   try {
     const post = yield call(postNews, form);
-    yield put(CreateNewsResponse(post));
+    yield put(createNewsResponse(post));
   } catch (error) {
     yield put(getCreateNewsError(error.response.data));
   }

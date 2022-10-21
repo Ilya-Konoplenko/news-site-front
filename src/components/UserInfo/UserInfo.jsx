@@ -24,27 +24,26 @@ function UserInfo({ userData, isOwner }) {
       </p>
       {isOwner
         && (
-        <Button
-          id="user-info__create-post-bnt"
-          variant="contained"
-          size="large"
-        >
-          CHANGE INFO
-        </Button>
+        <>
+          <Button
+            id="user-info__create-post-bnt"
+            variant="contained"
+            size="large"
+          >
+            CHANGE INFO
+          </Button>
+          <Button
+            onClick={() => setModalType('newsForm')}
+            id="user-info__create-post-bnt"
+            variant="contained"
+            size="large"
+          >
+            CREATE NEW POST
+          </Button>
+          {modalType && <Modal activeModalType={modalType} setActiveModalType={setModalType} />}
+        </>
         )}
-      {modalType && <Modal activeModalType={modalType} setActiveModalType={setModalType} />}
-      {isOwner && (
-      <Button
-        onClick={() => setModalType('newsForm')}
-        id="user-info__create-post-bnt"
-        variant="contained"
-        size="large"
-      >
-        CREATE NEW POST
-      </Button>
-      )}
     </Box>
-
   );
 }
 

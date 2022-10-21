@@ -11,10 +11,10 @@ const description = Yup.string()
   .min(60, Message.TEXT_TOO_SHORT)
   .required(Message.TEXT_REQUIRED);
 
-const newsFormValidationSchema = Yup.object().shape({
+export const currentFields = ['title', 'description', 'tags'];
+
+export const newsFormValidationSchema = Yup.object().shape({
   title,
   description,
   tags: Yup.string(),
 });
-
-export default newsFormValidationSchema;
